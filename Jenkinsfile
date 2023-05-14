@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    environment {
-        CONTINER = ipreg
-    }
+        environment {
+        CONTINER = "ipreg"
+        }
 
     stages {
 
