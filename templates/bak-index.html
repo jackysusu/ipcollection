@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <style>
+        .error-msg {
+            color: red;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Registration Form</h1>
+    {% if success %}
+    <p>{{ success }}</p>
+    <button onclick="window.location.href='/'">重新填写</button>
+    {% else %}
+    <form action="/register" method="POST">
+        <label for="user_name">User Name:</label>
+        <input type="text" id="user_name" name="user_name" value="{{ user_name }}"><br><br>
+
+        <label for="static_ip">靜態 IP:</label>
+        <input type="text" name="static_ip" id="static_ip" value="{{ static_ip }}">
+        {% if error_msg_ip %}
+        <span class="error-msg">{{ error_msg_ip }}</span>
+        {% endif %}
+        <br><br>
+
+        <label for="computer_name">電腦名稱:</label>
+        <input type="text" name="computer_name" id="computer_name" value="{{ computer_name }}">
+        {% if error_msg_cn %}
+        <span class="error-msg">{{ error_msg_cn }}</span>
+        {% endif %}
+        <br><br>
+
+        <input type="submit" value="Register">
+    </form>
+    {% endif %}
+</body>
+</html>
