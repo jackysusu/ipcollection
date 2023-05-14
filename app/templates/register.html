@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AMIGO 靜態IP 登記</title>
+    <!-- 引入 Bootstrap 的 CSS 样式 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">AMIGO 靜態IP 登記</h1>
+        {% if success %}
+        <p class="alert alert-success">{{ success }}</p>
+        <a class="btn btn-primary" href="/">重新填写</a>
+        {% else %}
+        <form action="/register" method="POST">
+            <div class="mb-3">
+                <label for="user_name" class="form-label">使用者:</label>
+                <input type="text" class="form-control" id="user_name" name="user_name" value="{{ user_name }}">
+            </div>
+
+            <div class="mb-3">
+                <label for="computer_name" class="form-label">電腦名稱:</label>
+                <input type="text" class="form-control" name="computer_name" id="computer_name" value="{{ computer_name }}">
+                {% if error_msg_cn %}
+                <div class="text-danger">{{ error_msg_cn }}</div>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                <label for="static_ip" class="form-label">靜態 IP:</label>
+                <input type="text" class="form-control" name="static_ip" id="static_ip" value="{{ static_ip }}">
+                {% if error_msg_ip %}
+                <div class="text-danger">{{ error_msg_ip }}</div>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+        {% endif %}
+    </div>
+
+    <!-- 引入 Bootstrap 的 JavaScript 脚本 -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -8,35 +8,29 @@
 <body>
     <div class="container">
         <h1 class="mt-5">AMIGO 靜態IP 登記</h1>
-        {% if success %}
-        <p class="alert alert-success">{{ success }}</p>
-        <a class="btn btn-primary" href="/">重新填写</a>
-        {% else %}
-        <form action="/register" method="POST">
-            <div class="mb-3">
-                <label for="user_name" class="form-label">使用者:</label>
-                <input type="text" class="form-control" id="user_name" name="user_name" value="{{ user_name }}">
-            </div>
-
-            <div class="mb-3">
-                <label for="computer_name" class="form-label">電腦名稱:</label>
-                <input type="text" class="form-control" name="computer_name" id="computer_name" value="{{ computer_name }}">
-                {% if error_msg_cn %}
-                <div class="text-danger">{{ error_msg_cn }}</div>
-                {% endif %}
-            </div>
-
-            <div class="mb-3">
-                <label for="static_ip" class="form-label">靜態 IP:</label>
-                <input type="text" class="form-control" name="static_ip" id="static_ip" value="{{ static_ip }}">
-                {% if error_msg_ip %}
-                <div class="text-danger">{{ error_msg_ip }}</div>
-                {% endif %}
-            </div>
-
-            <button type="submit" class="btn btn-primary">Register</button>
+        <form action="/register" >
+            <button type="submit" class="btn btn-primary">登記靜態IP</button>
         </form>
-        {% endif %}
+
+        <h2 class="mt-4">Registered Users</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Static IP</th>
+                    <th>Computer Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user[0] }}</td>
+                    <td>{{ user[1] }}</td>
+                    <td>{{ user[2] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 
     <!-- 引入 Bootstrap 的 JavaScript 脚本 -->
