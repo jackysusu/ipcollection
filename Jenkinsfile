@@ -2,7 +2,6 @@ pipeline {
     agent any
     environment {
         CONTINER=ipreg
-
     }
 
     stages {
@@ -21,9 +20,6 @@ pipeline {
         }
 
         stage('Deploy') {
-            when {
-                expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
-            }
             steps {
                 sh 'docker run --restart=always -d -p 1080:5000 --name $CONTINER $CONTINER:latest'
             }
